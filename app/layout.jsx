@@ -1,4 +1,5 @@
-import Header from "./components/header";
+import Link from "next/link";
+
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -14,13 +15,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <div className="flex justify-center m-10  ">
-          <h1 className="font-extrabold text-3xl">JADWAL IBADAH</h1>
+          <Link className="font-bold text-xl lg:text-4xl" href={"/"}>
+            JADWAL IBADAH JEMAT RAYON VII
+          </Link>
         </div>
 
-        <div className="max-w-4xl mx-auto px-5">
-          <Header />
-          {children}
-        </div>
+        <div className="max-w-4xl mx-auto px-5">{children}</div>
       </body>
     </html>
   );
