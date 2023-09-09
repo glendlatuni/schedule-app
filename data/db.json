@@ -1,0 +1,76 @@
+{
+  "jadwal": [
+    {
+      "id": "keluarga",
+      "nama": "Kel.latuni",
+      "alamat": "Bobara 1",
+      "ibadah": "keluarga",
+      "hari_tanggal": "Kamis,30 July 1987",
+      "Pelayan": "Sym.Rica.S",
+      "Liturgi": "Sdr.Sisi"
+    },
+    {
+      "id": "pkb",
+      "nama": "BPK.Glen",
+      "alamat": "Bobara 4",
+      "ibadah": "PKB",
+      "hari_tanggal": "Rabu,29 July 1987",
+      "Pelayan": "Sym.Ida.S",
+      "Liturgi": "Sdr.Marvel"
+    },
+    {
+      "id": "pw",
+      "nama": "Ibu.Claudia",
+      "alamat": "Bobara 9",
+      "ibadah": "PW",
+      "hari_tanggal": "Selasa,28 July 1987",
+      "Pelayan": "Pnt.Johan.P",
+      "Liturgi": "Sdr.Mario"
+    },
+    {
+      "id": "pam",
+      "nama": "Sdr.Sisi",
+      "alamat": "Bobara 1 Gunung",
+      "ibadah": "PAM",
+      "hari_tanggal": "Senin,27 July 1987",
+      "Pelayan": "Pnt.Belinda",
+      "Liturgi": "Sdr.Marvel"
+    },
+    {
+      "id": "keluarga",
+      "nama": "Kel.latuni",
+      "alamat": "Bobara 1",
+      "ibadah": "keluarga",
+      "hari_tanggal": "Kamis,30 July 1987",
+      "Pelayan": "Sym.Rica.S",
+      "Liturgi": "Sdr.Sisi"
+    },
+    {
+      "id": "pkb",
+      "nama": "BPK.lukas",
+      "alamat": "Bobara 7",
+      "ibadah": "PKB",
+      "hari_tanggal": "Rabu,23 Agustus 1989",
+      "Pelayan": "Sym.Markus.S",
+      "Liturgi": "Sdr.Mario"
+    },
+    {
+      "id": "pw",
+      "nama": "Ibu.Mince",
+      "alamat": "Bobara 12",
+      "ibadah": "PW",
+      "hari_tanggal": "Selasa,28 July 1912",
+      "Pelayan": "Pnt.Yance.P",
+      "Liturgi": "Sdr.Marvel"
+    },
+    {
+      "id": "pam",
+      "nama": "Sdr.Miguel",
+      "alamat": "Bobara 1 Pantai",
+      "ibadah": "PAM",
+      "hari_tanggal": "Senin,18 Maret 1928",
+      "Pelayan": "Pnt.Belinda",
+      "Liturgi": "Sdr.Marvel"
+    }
+  ]
+}

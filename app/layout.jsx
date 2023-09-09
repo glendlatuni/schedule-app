@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import "./globals.css";
 import { Inter } from "next/font/google";
-import TopHeader from "./components/topHeader";
+import TopHeader from "./components/topheader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,12 +16,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <TopHeader />
-        <div className="flex justify-center m-10">
-          <Link className="font-bold text-xl lg:text-4xl" href={"/"}>
-            JADWAL IBADAH JEMAT RAYON VII
-          </Link>
-        </div>
-
         <div className="max-w-4xl mx-auto px-5">{children}</div>
       </body>
     </html>
