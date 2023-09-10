@@ -1,0 +1,40 @@
+{
+  "jadwal": [
+    {
+      "id": "keluarga",
+      "ibadah": "Keluarga",
+      "Nama": "Kel.Latuni",
+      "alamat": "Bobara 2",
+      "hari_tanggal": "Senin, 27 Maret 2023",
+      "pelayan": "Sym.R Sapulete",
+      "liturgi": "Sdr.Sisi"
+    },
+    {
+      "id": "pkb",
+      "ibadah": "pkb",
+      "Nama": "Bpk.Glen",
+      "alamat": "Bobara 1",
+      "hari_tanggal": "Selasa, 28 Maret 2023",
+      "pelayan": "Sym.Cornelaw",
+      "liturgi": "Sdr.Marvel"
+    },
+    {
+      "id": "pw",
+      "ibadah": "pw",
+      "Nama": "Ibu.Claudia",
+      "alamat": "Bobara 1",
+      "hari_tanggal": "Rabu, 29 Maret 2023",
+      "pelayan": "Pnt.Kayadu",
+      "liturgi": "Sdr.Miguel"
+    },
+    {
+      "id": "pam",
+      "ibadah": "pam",
+      "Nama": "Sdr.Marvel",
+      "alamat": "Bobara 9",
+      "hari_tanggal": "Kamis, 30 Maret 2023",
+      "pelayan": "Sym.R Belinda",
+      "liturgi": "Sdr.Mario"
+    }
+  ]
+}

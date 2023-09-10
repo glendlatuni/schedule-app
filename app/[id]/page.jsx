@@ -1,4 +1,14 @@
-export default function dynamicPage({ params }) {
+async function getData(id) {
+  const res = await fetch(`http://localhost:4000/jadwal/${id}`, {
+    next: {
+      revalidate: 60,
+    },
+  });
+  return res.json();
+}
+
+export default async function dynamicPage({ params }) {
+  const sch = await getData(params.id);
   return (
     <div className="flex flex-col items-center">
       <h1>
@@ -25,19 +35,19 @@ export default function dynamicPage({ params }) {
           </tr>
           <tr className="">
             <th className="text-sm font-light px-2 py-2">
-              <span className="text-gray-900">Kel.Latuni</span>
+              <span className="text-gray-900">{sch.Nama}</span>
             </th>
             <th className="text-sm font-light px-2 py-2">
-              <span className="text-gray-900">Bobara 3</span>
+              <span className="text-gray-900">{sch.alamat}</span>
             </th>
             <th className="text-sm font-light px-2 py-2">
-              <span className="text-gray-900">Senin,20 July 2023</span>
+              <span className="text-gray-900">{sch.hari_tanggal}</span>
             </th>
             <th className="text-sm font-light px-2 py-2">
-              <span className="text-gray-900">Sym.Rika Sapulette</span>
+              <span className="text-gray-900">{sch.pelayan}</span>
             </th>
             <th className="text-sm font-light px-2 py-2">
-              <span className="text-gray-900">Liturgi</span>
+              <span className="text-gray-900">{sch.litutgi}</span>
             </th>
           </tr>
         </thead>
