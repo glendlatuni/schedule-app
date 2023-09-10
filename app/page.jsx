@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="mx-auto px-2">
-      <h1 className="flex justify-center  text-lg font-bold bg-slate-400 py-5">
+      <h1 className="flex justify-center text-lg font-bold bg-slate-400 py-5">
         SELAMAT DATANG
       </h1>
       <p>
