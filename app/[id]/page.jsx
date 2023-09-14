@@ -16,7 +16,10 @@ export default async function DynamicPage({ params }) {
   const jadwals = await getData(params.id);
 
   const jadwalFilter = jadwals.filter((jadwalz) => jadwalz.id === params.id);
-  console.log(jadwalFilter);
+
+  const url = `http://localhost:3000/${params.id}`;
+
+  console.log(url);
 
   return (
     <div className="flex flex-col items-center">
@@ -26,54 +29,46 @@ export default async function DynamicPage({ params }) {
       </h1>
       <table className=" min-w-full table-auto ">
         <thead className="text-sm font-light ">
-          <tr className=" bg-red-500 lg:`bg-slate-700`">
+          <tr className=" bg-secondaryDark">
             <th className="text-sm font-light px-2 py-2">
               <span className="text-gray-200">Name</span>
             </th>
             <th className="text-sm font-light px-2 py-2">
-              <span className="text-gray-200">Tempat Ibadah</span>
+              <span className="text-Pblack">Tempat Ibadah</span>
             </th>
             <th className="text-sm font-light px-2 py-2">
-              <span className="text-gray-200">Hari Tanggal</span>
+              <span className="text-Pblack">Hari Tanggal</span>
             </th>
             <th className="text-sm font-light px-2 py-2">
-              <span className="text-gray-200">Pelayan Firman</span>
+              <span className="text-Pblack">Pelayan Firman</span>
             </th>
             <th className="text-sm font-light px-2 py-2">
-              <span className="text-gray-200">Liturgi</span>
+              <span className="text-Pblack">Liturgi</span>
             </th>
           </tr>
         </thead>
         {jadwalFilter.map((jadwalx, index) => (
           <tbody key={index}>
-            <tr>
-              <th className="text-sm font-light px-2 py-2">
+            <tr className="border-b-2 border-slate-600 ">
+              <th className="text-sm font-light px-2 py-2 text-left">
                 <span className="text-gray-900">{jadwalx.nama}</span>
               </th>
-              <th className="text-sm font-light px-2 py-2">
+              <th className="text-sm font-light px-2 py-2 text-left">
                 <span className="text-gray-900">{jadwalx.alamat}</span>
               </th>
-              <th className="text-sm font-light px-2 py-2">
+              <th className="text-sm font-light px-2 py-2 text-left">
                 <span className="text-gray-900">{jadwalx.hari_tanggal}</span>
               </th>
-              <th className="text-sm font-light px-2 py-2">
+              <th className="text-sm font-light px-2 py-2 text-left">
                 <span className="text-gray-900">{jadwalx.Pelayan}</span>
               </th>
-              <th className="text-sm font-light px-2 py-2">
+              <th className="text-sm font-light px-2 py-2 text-left">
                 <span className="text-gray-900">{jadwalx.Liturgi}</span>
               </th>
             </tr>
           </tbody>
         ))}
       </table>
-
-      {/* <div>
-        {jadwalFilter.map((jadwalx, index) => (
-          <div key={index}>
-            <p>{jadwalx.hari_tanggal}</p>
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 }
