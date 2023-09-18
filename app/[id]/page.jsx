@@ -1,6 +1,8 @@
-async function getData(id) {
+import { Express } from "express";
+
+async function getData() {
   try {
-    const res = await fetch(`http://localhost:4000/jadwal/${id}`, {
+    const res = await fetch(`http://localhost:4000/jadwal/`, {
       next: {
         revalidate: 0,
       },
@@ -14,7 +16,7 @@ async function getData(id) {
 export default async function dynamicPage({ params }) {
   const jadwals = await getData(params.id);
   console.log(jadwals);
-
+  const jadwalFilter = jadwals.filter((jadwalz) => jadwalz.id === params.id);
   return (
     <div className="flex flex-col items-center">
       <h1 className="p-10 text-xl font-bold text-center">
@@ -42,31 +44,26 @@ export default async function dynamicPage({ params }) {
           </tr>
         </thead>
         <tbody>
-          {/* isi tabel  */}
-
-          {jadwals.jadwal &&
-            jadwals.jadwal.map((itemTabel) => (
-              // eslint-disable-next-line react/jsx-key
-              <tr>
-                <th className="text-sm font-light px-2 py-2">
-                  <span className="text-gray-900">{itemTabel.nama}</span>
-                </th>
-                <th className="text-sm font-light px-2 py-2">
-                  <span className="text-gray-900">{itemTabel.alamat}</span>
-                </th>
-                <th className="text-sm font-light px-2 py-2">
-                  <span className="text-gray-900">
-                    {itemTabel.hari_tanggal}
-                  </span>
-                </th>
-                <th className="text-sm font-light px-2 py-2">
-                  <span className="text-gray-900">{itemTabel.Pelayan}</span>
-                </th>
-                <th className="text-sm font-light px-2 py-2">
-                  <span className="text-gray-900">{itemTabel.Liturgi}</span>
-                </th>
-              </tr>
-            ))}
+          {jadwalFilter.map((jadwalz, index) => (
+            // eslint-disable-next-line react/jsx-key
+            <tr key={index}>
+              <th className="text-sm font-light px-2 py-2">
+                <span className="text-gray-900">{jadwalz.nama}</span>
+              </th>
+              <th className="text-sm font-light px-2 py-2">
+                <span className="text-gray-900">{jadwalz.alamat}</span>
+              </th>
+              <th className="text-sm font-light px-2 py-2">
+                <span className="text-gray-900">{jadwalz.hari_tanggal}</span>
+              </th>
+              <th className="text-sm font-light px-2 py-2">
+                <span className="text-gray-900">{jadwalz.Pelayan}</span>
+              </th>
+              <th className="text-sm font-light px-2 py-2">
+                <span className="text-gray-900">{jadwalz.Liturgi}</span>
+              </th>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
