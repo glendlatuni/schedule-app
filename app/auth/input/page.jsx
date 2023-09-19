@@ -1,59 +1,91 @@
 "use client";
-import { Component } from "react";
 
-class formInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      jenis: "PKB",
-      dataLabel: "Masukan data BKB",
-    };
-  }
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
-  handleKindChange = (e) => {
-    const jenisValue = e.target.value;
-    let dataLabel = "";
+export default function FormInput() {
+  const options = [
+    { value: "", text: "--CHOOSE AN OPTION--" },
+    { value: "pkb", text: "PKB" },
+    { value: "pw", text: "PW" },
+    { value: "keluarga", text: "KELUARGA" },
+  ];
 
-    if (jenisValue === "PKB") {
-      dataLabel = "Masukan Data PKB";
-    } else if (jenisValue === "PW") {
-      dataLabel = "Masukan Data PW";
-    } else if (jenisValue === "KELUARGA") {
-      dataLabel = "Masukan Data KELUARGA";
+  const router = useRouter();
+
+  const [optSelect, setoptSelected] = useState(options[0].value);
+  const [kind, setKind] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [leader, setLeader] = useState("");
+  const [liturgy, setLiturgy] = useState("");
+  const [date, setDate] = useState("");
+
+  const handleInput = async (event) => {
+    event.preventDefault();
+
+    setoptSelected(event.target.value);
+    if (!kind || !name || !leader || !liturgy || !date) {
+      alert("Fill The Form Please!!!");
     }
-    this.setState({
-      jenis: jenisValue,
-      dataLabel: dataLabel,
-    });
+
+    try {
+      const res = await fetch("http://localhost:3000/api/sch", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ name, kind, address, leader, liturgy, date }),
+      });
+      // name, kind, address, leader, liturgy, date
+      if (res.ok) {
+        router.push("/");
+      } else {
+        throw new Error("failed to create database");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
-  render() {
-    return (
-      <div className="flex space-y-10 flex-col bg-slate-300 p-10 rounded-lg">
-        <h1 className="flex justify-center text-xl font-bold mb-4">
-          FORM INPUT DATA
-        </h1>
-        <form className="flex flex-col font-bold text-lg" action="">
+
+  return (
+    <div className="flex space-y-10 flex-col bg-slate-300 p-10 rounded-lg">
+      <h1 className="flex justify-center text-xl font-bold mb-4">
+        FORM INPUT DATA
+      </h1>
+      <div className="border-black">
+        <form
+          onSubmit={handleInput}
+          className="flex flex-col font-bold text-lg"
+          action="">
           <label htmlFor="jenis">Pilih Jenis:</label>
           <select
-            className="p-2 w-1/6"
+            className="p-2 w-fit"
             name="jenis"
             id="jenis"
-            value={this.state.jenis}
-            onChange={this.handleKindChange}>
-            <option value="PKB">PKB</option>
-            <option value="PW">PW</option>
-            <option value="KELUARGA">KELUARGA</option>
+            value={kind}
+            onChange={(e) => setKind(e.target.value)}>
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.text}
+              </option>
+            ))}
           </select>
-          <label htmlFor="data">{this.state.dataLabel}:</label>
+
+          <label htmlFor="data">TES</label>
           <input
+            onChange={(e) => setName(e.target.value)}
+            value={name}
             className="p-2"
             type="text"
             id="data"
             name="data"
-            placeholder={`Masukkan Data ${this.state.jenis}`}
+            placeholder="Masukkan Data"
           />
-          <label htmlFor="data">Amalat:</label>
+          <label htmlFor="data">Alamat:</label>
           <input
+            onChange={(e) => setAddress(e.target.value)}
+            value={address}
             className="p-2"
             type="text"
             id="alamat"
@@ -62,6 +94,8 @@ class formInput extends Component {
           />
           <label htmlFor="data">Pelayan Firman:</label>
           <input
+            onChange={(e) => setLeader(e.target.value)}
+            value={leader}
             className="p-2"
             type="text"
             id="leader"
@@ -71,6 +105,8 @@ class formInput extends Component {
 
           <label htmlFor="data">Liturgi:</label>
           <input
+            onChange={(e) => setLiturgy(e.target.value)}
+            value={liturgy}
             className="p-2"
             type="text"
             id="liturgi"
@@ -80,20 +116,20 @@ class formInput extends Component {
 
           <label htmlFor="data">Hari Tanggal:</label>
           <input
+            onChange={(e) => setDate(e.target.value)}
+            value={date}
             className="p-2"
-            type="date"
+            type="text"
             id="tanggal"
             name="tanggal"
             min="2023-01-01"
-
-
           />
 
-          <input type="submit" value="Submit" />
+          <button className=" bg-green-400 my-4 py-3 w-1/2 rounded-4xl">
+            SUBMIT
+          </button>
         </form>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default formInput;

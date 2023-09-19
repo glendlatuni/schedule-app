@@ -9,7 +9,7 @@ export default function TopHeader() {
 
         <Link
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-          href={"/auth"}>
+          href={"/auth/input"}>
           AUTH
         </Link>
       </div>

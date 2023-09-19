@@ -1,4 +1,4 @@
-import { Express } from "express";
+
 
 async function getData() {
   try {
