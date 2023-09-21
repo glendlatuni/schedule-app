@@ -1,5 +1,5 @@
-
 import RemoveBTN from "../components/removeBTN";
+import Link from "next/link";
 
 async function getData() {
   try {
@@ -18,7 +18,7 @@ async function getData() {
 }
 
 export default async function dynamicPage({ params }) {
-    const jadwal = await getData(params.id);
+  const jadwal = await getData(params.id);
 
   console.log(jadwal);
 
@@ -76,7 +76,9 @@ export default async function dynamicPage({ params }) {
                 <span className="text-gray-900">{jadwalz.liturgy}</span>
               </th>
               <th className="text-sm font-light px-2 py-2">
-                <span className="text-gray-900"><RemoveBTN id={jadwalz._id}/></span>
+                <span className="text-gray-900">
+                  <RemoveBTN id={jadwalz._id} />
+                </span>
               </th>
             </tr>
           ))}
@@ -85,5 +87,3 @@ export default async function dynamicPage({ params }) {
     </div>
   );
 }
-
-
