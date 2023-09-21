@@ -1,11 +1,11 @@
-import mongoose, { Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const schSchema = new Schema(
   {
     name: String,
-    kind: String,
+    ids: String,
     address: String,
-    leaders: String,
+    leader: String,
     liturgy: String,
     date: String,
   },

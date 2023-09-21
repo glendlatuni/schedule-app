@@ -1,22 +1,32 @@
 
+import RemoveBTN from "../components/removeBTN";
 
 async function getData() {
   try {
-    const res = await fetch(`http://localhost:4000/jadwal/`, {
+    const res = await fetch(`http://localhost:3000/api/sch`, {
       next: {
         revalidate: 0,
       },
     });
+    if (!res.ok) {
+      throw new Error("Failed to fetch datas");
+    }
     return res.json();
   } catch (error) {
-    throw new error(error);
+    console.log("ERROR", error);
   }
 }
 
 export default async function dynamicPage({ params }) {
-  const jadwals = await getData(params.id);
-  console.log(jadwals);
-  const jadwalFilter = jadwals.filter((jadwalz) => jadwalz.id === params.id);
+    const jadwal = await getData(params.id);
+
+  console.log(jadwal);
+
+  const jadwalFilter = jadwal.sch.filter(
+    (jadwalz) => jadwalz.ids === params.id
+  );
+  // const schFilter = schs.filter()
+
   return (
     <div className="flex flex-col items-center">
       <h1 className="p-10 text-xl font-bold text-center">
@@ -41,6 +51,9 @@ export default async function dynamicPage({ params }) {
             <th className="text-sm font-light px-2 py-2">
               <span className="text-gray-200">Liturgi</span>
             </th>
+            <th className="text-sm font-light px-2 py-2">
+              <span className="text-gray-200">EDIT</span>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -48,19 +61,22 @@ export default async function dynamicPage({ params }) {
             // eslint-disable-next-line react/jsx-key
             <tr key={index}>
               <th className="text-sm font-light px-2 py-2">
-                <span className="text-gray-900">{jadwalz.nama}</span>
+                <span className="text-gray-900">{jadwalz.name}</span>
               </th>
               <th className="text-sm font-light px-2 py-2">
-                <span className="text-gray-900">{jadwalz.alamat}</span>
+                <span className="text-gray-900">{jadwalz.address}</span>
               </th>
               <th className="text-sm font-light px-2 py-2">
-                <span className="text-gray-900">{jadwalz.hari_tanggal}</span>
+                <span className="text-gray-900">{jadwalz.date}</span>
               </th>
               <th className="text-sm font-light px-2 py-2">
-                <span className="text-gray-900">{jadwalz.Pelayan}</span>
+                <span className="text-gray-900">{jadwalz.leader}</span>
               </th>
               <th className="text-sm font-light px-2 py-2">
-                <span className="text-gray-900">{jadwalz.Liturgi}</span>
+                <span className="text-gray-900">{jadwalz.liturgy}</span>
+              </th>
+              <th className="text-sm font-light px-2 py-2">
+                <span className="text-gray-900"><RemoveBTN id={jadwalz._id}/></span>
               </th>
             </tr>
           ))}
@@ -69,3 +85,5 @@ export default async function dynamicPage({ params }) {
     </div>
   );
 }
+
+

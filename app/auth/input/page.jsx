@@ -30,14 +30,22 @@ export default function FormInput() {
     }
 
     try {
+      // const formattedDate = newDate.toISOString().split("T")[0];
       const res = await fetch("http://localhost:3000/api/sch", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ name, kind, address, leader, liturgy, date }),
+        body: JSON.stringify({
+          name,
+          kind,
+          address,
+          leader,
+          liturgy,
+          date,
+          // newDate,
+        }),
       });
-      // name, kind, address, leader, liturgy, date
       if (res.ok) {
         router.push("/");
       } else {
@@ -119,14 +127,14 @@ export default function FormInput() {
             onChange={(e) => setDate(e.target.value)}
             value={date}
             className="p-2"
-            type="text"
+            type="date"
             id="tanggal"
             name="tanggal"
             min="2023-01-01"
           />
 
           <button className=" bg-green-400 my-4 py-3 w-1/2 rounded-4xl">
-            SUBMIT
+            SUBMIT {console.log(date)}
           </button>
         </form>
       </div>
