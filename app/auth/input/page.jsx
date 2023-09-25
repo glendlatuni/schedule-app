@@ -14,7 +14,7 @@ export default function FormInput() {
   const router = useRouter();
 
   const [optSelect, setoptSelected] = useState(options[0].value);
-  const [kind, setKind] = useState("");
+  const [ids, setIds] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [leader, setLeader] = useState("");
@@ -25,7 +25,7 @@ export default function FormInput() {
     event.preventDefault();
 
     setoptSelected(event.target.value);
-    if (!kind || !name || !leader || !liturgy || !date) {
+    if (!ids || !name || !leader || !liturgy || !date) {
       alert("Fill The Form Please!!!");
     }
 
@@ -38,7 +38,7 @@ export default function FormInput() {
         },
         body: JSON.stringify({
           name,
-          kind,
+          ids,
           address,
           leader,
           liturgy,
@@ -71,8 +71,8 @@ export default function FormInput() {
             className="p-2 w-fit"
             name="jenis"
             id="jenis"
-            value={kind}
-            onChange={(e) => setKind(e.target.value)}>
+            value={ids}
+            onChange={(e) => setIds(e.target.value)}>
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.text}
@@ -80,7 +80,7 @@ export default function FormInput() {
             ))}
           </select>
 
-          <label htmlFor="data">TES</label>
+          <label htmlFor="data">Nama</label>
           <input
             onChange={(e) => setName(e.target.value)}
             value={name}

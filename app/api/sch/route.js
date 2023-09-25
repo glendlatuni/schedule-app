@@ -29,6 +29,7 @@ export async function DELETE(request) {
   try {
     const id = request.nextUrl.searchParams.get("id");
     await connectMongoDB();
+    console.log(id)
     await Sch.findByIdAndDelete(id);
     return NextResponse.json({ message: "JADWAL DIHAPUS" }, { status: 200 });
   } catch (error) {

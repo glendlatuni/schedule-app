@@ -33,7 +33,7 @@ export default async function dynamicPage({ params }) {
         INI JADWAL UNTUK IBADAH{" "}
         <span className="uppercase text-red-500">{params.id}</span>
       </h1>
-      <table className=" min-w-full table-auto ">
+      <table className=" uppercase min-w-full table-auto ">
         <thead className="text-sm font-light ">
           <tr className=" bg-red-500 lg:bg-slate-700">
             <th className="text-sm font-light px-2 py-2">

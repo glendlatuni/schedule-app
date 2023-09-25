@@ -3,7 +3,7 @@ import Sch from "@/models/sch";
 import { NextResponse } from "next/server";
 
 export async function PUT(request, { params }) {
-  const {id}   = request.params.id
+  const { id } = params;
 
   const {
     newName: name,
