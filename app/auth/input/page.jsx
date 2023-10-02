@@ -31,12 +31,12 @@ export default function FormInput() {
     }
 
     if (
-      ids.trim() === "" ||
-      name.trim() === "" ||
-      address.trim() === "" ||
-      leader.trim() === "" ||
-      liturgy.trim() === "" ||
-      date.trim() === ""
+      !ids ||
+      !name ||
+      !address ||
+      !leader ||
+      !liturgy||
+      !date
     ) {
       alert("Harap isi semua formulir terlebih dahulu.");
     }
