@@ -3,7 +3,15 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-export default function FormInput() {
+export default function EditJdwl({
+  id,
+  name,
+  ids,
+  address,
+  leader,
+  liturgy,
+  date,
+}) {
   const options = [
     { value: "", text: "--CHOOSE AN OPTION--" },
     { value: "pkb", text: "PKB" },
@@ -14,52 +22,47 @@ export default function FormInput() {
 
   const router = useRouter();
 
-  const [optSelect, setoptSelected] = useState(options[0].value);
-  const [ids, setIds] = useState("");
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [leader, setLeader] = useState("");
-  const [liturgy, setLiturgy] = useState("");
-  const [date, setDate] = useState("");
+  const [optSelect, setNewoptSelected] = useState(options[0].value);
+  const [newIds, setNewIds] = useState(ids);
+  const [newName, setNewName] = useState(name);
+  const [newAddress, setNewAddress] = useState(address);
+  const [NewLeader, setNewLeader] = useState(leader);
+  const [NewLiturgy, setNewLiturgy] = useState(liturgy);
+  const [NewDate, setNewDate] = useState(date);
 
   const handleInput = async (event) => {
     event.preventDefault();
 
-    setoptSelected(event.target.value);
-    if (!optSelect) {
-      alert("Fill The Form Please!!!");
-    }
-
+    setNewoptSelected(event.target.value);
     if (
-      ids.trim() === "" ||
-      name.trim() === "" ||
-      address.trim() === "" ||
-      leader.trim() === "" ||
-      liturgy.trim() === "" ||
-      date.trim() === ""
+      !newIds ||
+      !newName ||
+      !NewLeader ||
+      !NewLiturgy ||
+      !NewDate ||
+      !newAddress
     ) {
-      alert("Harap isi semua formulir terlebih dahulu.");
+      alert("Fill The Form Please!!!");
     }
 
     try {
       // const formattedDate = newDate.toISOString().split("T")[0];
-      const res = await fetch("http://localhost:3000/api/sch", {
-        method: "POST",
+      const res = await fetch(`http://localhost:3000/api/sch/${id}`, {
+        method: "PUT",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
-          name,
-          ids,
-          address,
-          leader,
-          liturgy,
-          date,
+          newName,
+          newIds,
+          newAddress,
+          NewLeader,
+          NewLiturgy,
+          NewDate,
         }),
       });
-
       if (res.ok) {
-        router.push("/");
+        router.push("/keluarga");
       } else {
         throw new Error("failed to create database");
       }
@@ -69,9 +72,9 @@ export default function FormInput() {
   };
 
   return (
-    <div className="flex space-y-10 flex-col bg-slate-600 p-10 rounded-lg">
+    <div className="flex space-y-10 flex-col bg-red-300 p-10 rounded-lg">
       <h1 className="flex justify-center text-xl font-bold mb-4">
-        FORM INPUT DATA
+        FORM EDIT DATA
       </h1>
       <div className="border-black">
         <form
@@ -83,8 +86,8 @@ export default function FormInput() {
             className="p-2 w-fit"
             name="jenis"
             id="jenis"
-            value={ids}
-            onChange={(e) => setIds(e.target.value)}>
+            value={newIds}
+            onChange={(e) => setNewIds(e.target.value)}>
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.text}
@@ -94,8 +97,8 @@ export default function FormInput() {
 
           <label htmlFor="data">Nama</label>
           <input
-            onChange={(e) => setName(e.target.value)}
-            value={name}
+            onChange={(e) => setNewName(e.target.value)}
+            value={newName}
             className="p-2"
             type="text"
             id="data"
@@ -104,8 +107,8 @@ export default function FormInput() {
           />
           <label htmlFor="data">Alamat:</label>
           <input
-            onChange={(e) => setAddress(e.target.value)}
-            value={address}
+            onChange={(e) => setNewAddress(e.target.value)}
+            value={newAddress}
             className="p-2"
             type="text"
             id="alamat"
@@ -114,8 +117,8 @@ export default function FormInput() {
           />
           <label htmlFor="data">Pelayan Firman:</label>
           <input
-            onChange={(e) => setLeader(e.target.value)}
-            value={leader}
+            onChange={(e) => setNewLeader(e.target.value)}
+            value={NewLeader}
             className="p-2"
             type="text"
             id="leader"
@@ -125,8 +128,8 @@ export default function FormInput() {
 
           <label htmlFor="data">Liturgi:</label>
           <input
-            onChange={(e) => setLiturgy(e.target.value)}
-            value={liturgy}
+            onChange={(e) => setNewLiturgy(e.target.value)}
+            value={NewLiturgy}
             className="p-2"
             type="text"
             id="liturgi"
@@ -136,8 +139,8 @@ export default function FormInput() {
 
           <label htmlFor="data">Hari Tanggal:</label>
           <input
-            onChange={(e) => setDate(e.target.value)}
-            value={date}
+            onChange={(e) => setNewDate(e.target.value)}
+            value={NewDate}
             className="p-2"
             type="date"
             id="tanggal"

@@ -1,12 +1,17 @@
 "use client";
+import { useRouter } from "next/navigation";
 
 import { AiTwotoneDelete } from "react-icons/ai";
 
-export default function removeBTN({ id }) {
+export default function RemoveBTN({ id }) {
+  const router = useRouter();
   const removeJadwal = async () => {
-    await fetch(`http://localhost:3000/api/sch?id=${id}`, {
+    const res = await fetch(`http://localhost:3000/api/sch?id=${id}`, {
       method: "DELETE",
     });
+    if (res.ok) {
+      router.refresh();
+    }
   };
 
   return (

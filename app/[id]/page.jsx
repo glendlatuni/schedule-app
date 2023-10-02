@@ -1,5 +1,6 @@
 import RemoveBTN from "../components/removeBTN";
 import Link from "next/link";
+import { AiFillEdit } from "react-icons/ai";
 
 async function getData() {
   try {
@@ -75,9 +76,12 @@ export default async function dynamicPage({ params }) {
               <th className="text-sm font-light px-2 py-2">
                 <span className="text-gray-900">{jadwalz.liturgy}</span>
               </th>
-              <th className="text-sm font-light px-2 py-2">
-                <span className="text-gray-900">
+              <th className="text-sm font-light px-2 py-2 ">
+                <span className="text-gray-900 flex justify-between items-start">
                   <RemoveBTN id={jadwalz._id} />
+                  <Link href={`/editJadwal/${jadwalz._id}`}>
+                    <AiFillEdit size={24} />
+                  </Link>
                 </span>
               </th>
             </tr>
