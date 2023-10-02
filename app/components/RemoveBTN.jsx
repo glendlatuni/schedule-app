@@ -2,15 +2,11 @@
 
 import { AiTwotoneDelete } from "react-icons/ai";
 
-export default function removeBTN({ _id }) {
+export default function removeBTN({ id }) {
   const removeJadwal = async () => {
-    const confirm = confirm("Anda akan menghapus jadwal ini?");
-
-    if (confirm) {
-      await fetch(`http://localhost:3000/api/sch?id=${_id}`, {
-        method: "DELETE",
-      });
-    }
+    await fetch(`http://localhost:3000/api/sch?id=${id}`, {
+      method: "DELETE",
+    });
   };
 
   return (
